@@ -1,7 +1,32 @@
-- if current_user
-    = current_user.email
-    = link_to 'Account settings', edit_user_registration_path
-    = button_to 'Sign Out', destroy_user_session_path, method: :delete, data: { 'turbo' => 'false' }, class: 'btn btn-link'
-- else
-    = link_to 'Sign Up', new_user_registration_path
-    = link_to 'Log In', new_user_session_path
+%nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+  .container-fluid
+    %a.navbar-brand{:href => "#"} Rubygems
+    %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarSupportedContent", "data-bs-toggle" => "collapse", :type => "button"}
+      %span.navbar-toggler-icon
+    #navbarSupportedContent.collapse.navbar-collapse
+      - if current_user
+        %ul.navbar-nav.me-auto.mb-2.mb-lg-0
+          %li.nav-item{class: "#{'active font-weight-bold' if current_page?(root_path)}"}
+            = link_to root_path, class: 'nav-link' do
+              .bi.bi-house-fill &nbsp Home
+          %li.nav-item{class: "#{'active font-weight-bold' if current_page?(courses_path)}"}
+            = link_to courses_path, class: 'nav-link' do
+              .bi.bi-journals &nbsp Courses
+        %form.d-flex
+          %input.form-control.me-2{"aria-label" => "Search", :placeholder => "Search", :type => "search"}/
+          %button.btn.btn-outline-success{:type => "submit"} Search
+        %ul.navbar-nav.mr-right
+          %li.nav-item.dropdown
+            %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}
+              %b= current_user.email
+            %ul.dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+              %li
+                = link_to edit_user_registration_path, class: "dropdown-item" do 
+                  .bi.bi-gear-fill &nbsp Account Settings
+              %li
+                = button_to destroy_user_session_path, method: :delete, data: { turbo: false}, class: "dropdown-item" do 
+                  .bi.bi-box-arrow-right &nbsp Sign Out
+      - else 
+        %ul.navbar-nav
+          %li.nav-item= link_to 'Sign Up', new_user_registration_path, class: 'nav-link'
+          %li.nav-item= link_to 'Log In', new_user_session_path, class: 'nav-link'
