@@ -1,5 +1,50 @@
-%h1 Home#index
-%p Find me in app/views/home/index.html.haml
-= link_to 'courses', class: 'btn btn-success' do
-    .bi.bi-book 
-    Course
+.jumbotron 
+  %h1 What do you want to learn today? 
+  .form.d-flex 
+  = form_with url: :courses, method: :get do |form|
+    .div.input-group
+      = form.text_field :query, class: "form-control me-2", :placeholder => "Search", :type => "search"
+      = form.submit "Search", class: "btn btn-outline-success"
+%br
+.card-group
+  .card.card-body
+    %h1
+      .bi.bi-journal-check
+    = Course.count
+    online courses
+    .row
+    Explore a variety of fresh topics
+  .card.card-body
+    %h1
+      .bi.bi-person-badge
+    = Course.distinct.count(:user_id)
+    expert instructors
+    .row
+    Find the right instructor for you
+  .card.card-body
+    %h1
+      .bi.bi-mortarboard-fill
+    = User.count
+    active learners
+    .row
+    Join the knowledge sharing community
+  .card.card-body
+    %h1
+      .bi.bi-infinity
+    Lifetime access
+    .row
+    Learn on your schedule
+
+%hr
+%h2
+  Popular Courses 
+.row.row-cols-1.row-cols-md-3.g-4
+  - @courses.each do |course|
+    .col
+      = render 'courses/course', course: course 
+%h2
+  Latest Courses 
+.row.row-cols-1.row-cols-md-3.g-4
+  - @latest_courses.each do |course|
+    .col
+      = render 'courses/course', course: course

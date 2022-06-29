@@ -1,6 +1,6 @@
 %nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
   .container-fluid
-    %a.navbar-brand{:href => "#"} Rubygems
+    %a.navbar-brand{:href => "/"} Rubygems
     %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarSupportedContent", "data-bs-toggle" => "collapse", :type => "button"}
       %span.navbar-toggler-icon
     #navbarSupportedContent.collapse.navbar-collapse
@@ -12,9 +12,14 @@
           %li.nav-item{class: "#{'active font-weight-bold' if current_page?(courses_path)}"}
             = link_to courses_path, class: 'nav-link' do
               .bi.bi-journals &nbsp Courses
-        %form.d-flex
-          %input.form-control.me-2{"aria-label" => "Search", :placeholder => "Search", :type => "search"}/
-          %button.btn.btn-outline-success{:type => "submit"} Search
+        .form.d-flex 
+          = form_with url: :courses, method: :get do |form|
+            .div.input-group
+              = form.text_field :query, class: "form-control me-2", :placeholder => "Search", :type => "search"
+              = form.submit "Search", class: "btn btn-outline-success"
+        -# %form.d-flex
+        -#   %input.form-control.me-2{"aria-label" => "Search", :placeholder => "Search", :type => "search"}/
+        -#   %button.btn.btn-outline-success{:type => "submit"} Search
         %ul.navbar-nav.mr-right
           %li.nav-item.dropdown
             %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}

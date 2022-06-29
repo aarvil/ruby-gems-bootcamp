@@ -1,5 +1,7 @@
-%h1 New course
-
-= render 'form'
-
-= link_to 'Back', courses_path
+.card 
+  .card-body 
+    .card-title 
+      %h1 New course
+      = render 'form'
+  .card-footer
+    = link_to 'Back', courses_path
