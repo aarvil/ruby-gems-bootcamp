@@ -12,6 +12,9 @@
           %li.nav-item{class: "#{'active font-weight-bold' if current_page?(courses_path)}"}
             = link_to courses_path, class: 'nav-link' do
               .bi.bi-journals &nbsp Courses
+          %li.nav-item{class: "#{'active font-weight-bold' if current_page?(users_path)}"}
+            = link_to users_path, class: 'nav-link' do
+              .bi.bi-person-circle &nbsp Users
         .form.d-flex 
           = form_with url: :courses, method: :get do |form|
             .div.input-group
