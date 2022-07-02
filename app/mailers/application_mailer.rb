@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "support@ruby-gems-bootcamp-aarvil.herokuapp.com"
+  default from: "aaron.villarreal@gmail.com"
   layout "mailer"
 end
