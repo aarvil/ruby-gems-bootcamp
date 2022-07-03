@@ -36,15 +36,17 @@
     Learn on your schedule
 
 %hr
-%h2
-  Popular Courses 
-.row.row-cols-1.row-cols-md-3.g-4
-  - @courses.each do |course|
-    .col
-      = render 'courses/course', course: course 
-%h2
-  Latest Courses 
-.row.row-cols-1.row-cols-md-3.g-4
-  - @latest_courses.each do |course|
-    .col
-      = render 'courses/course', course: course
+%div.container
+  %h2
+    Popular Courses 
+  .row.row-cols-1.row-cols-md-3.g-4
+    - @courses.each do |course|
+      .col
+        = render 'courses/course', course: course 
+%div.container
+  %h2
+    Latest Courses 
+  .row.row-cols-1.row-cols-md-3.g-4
+    - @latest_courses.each do |course|
+      .col
+        = render 'courses/course', course: course

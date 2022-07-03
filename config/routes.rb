@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   resources :courses
   resources :users, only: [:index]
   get 'home/index'
+  get 'home/activity'
   root 'home#index'
-  get 'privacy_policy', to: 'static_pages#privacy_policy'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

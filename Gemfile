@@ -75,9 +75,11 @@ group :test do
 end
 
 # Custom Gems
-gem "haml-rails", "~> 2.0"
-gem 'simple_form'
-gem 'faker'
-gem 'devise'
-gem 'friendly_id', '~> 5.4.0'
-gem 'figaro'
+gem "haml-rails", "~> 2.0"  #use haml
+gem 'simple_form'           #form
+gem 'faker'                 # fake data to seed db
+gem 'devise'                # authentication
+gem 'friendly_id', '~> 5.4.0' # url slugs
+gem 'figaro'                # environment variables
+gem 'ransack'               # Search
+gem 'public_activity'       # track user activity

@@ -15,11 +15,19 @@
           %li.nav-item{class: "#{'active font-weight-bold' if current_page?(users_path)}"}
             = link_to users_path, class: 'nav-link' do
               .bi.bi-person-circle &nbsp Users
+          %li.nav-item{class: "#{'active font-weight-bold' if current_page?(home_activity_path)}"}
+            = link_to home_activity_path, class: 'nav-link' do
+              .bi.bi-bell-fill &nbsp Activity
         .form.d-flex 
-          = form_with url: :courses, method: :get do |form|
+          = search_form_for @ransack_courses, as: :courses_search, url: courses_path do |f|
             .div.input-group
-              = form.text_field :query, class: "form-control me-2", :placeholder => "Search", :type => "search"
-              = form.submit "Search", class: "btn btn-outline-success"
+              = f.search_field :title_cont, :placeholder => "Search", class: 'form-control-sm'
+              = f.submit "Search", class: "btn btn-outline-success"
+        -# .form.d-flex 
+        -#   = form_with url: :courses, method: :get do |form|
+        -#     .div.input-group
+        -#       = form.text_field :query, class: "form-control me-2", :placeholder => "Search", :type => "search"
+        -#       = form.submit "Search", class: "btn btn-outline-success"
         -# %form.d-flex
         -#   %input.form-control.me-2{"aria-label" => "Search", :placeholder => "Search", :type => "search"}/
         -#   %button.btn.btn-outline-success{:type => "submit"} Search
