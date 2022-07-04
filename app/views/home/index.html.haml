@@ -1,10 +1,15 @@
-.jumbotron 
-  %h1 What do you want to learn today? 
-  .form.d-flex 
-  = form_with url: :courses, method: :get do |form|
-    .div.input-group
-      = form.text_field :query, class: "form-control me-2", :placeholder => "Search", :type => "search"
-      = form.submit "Search", class: "btn btn-outline-success"
+.p-5.mb-4.bg-light.rounded-3
+  .container-fluid.py-5
+    %h1.display-5.fw-bold
+      What do you want to learn today?
+    %p 
+    .form.d-flex
+      - if current_user
+        = search_form_for @ransack_courses, as: :courses_search, url: courses_path do |f|
+          .input-group
+            = f.search_field :title_cont, class: 'form-control-sm', placeholder: 'Find a course', :autocomplete => :off
+            %button.btn.btn-success{:type => "submit"}
+              %span.bi.bi-search{"aria-hidden" => "true"}
 %br
 .card-group
   .card.card-body

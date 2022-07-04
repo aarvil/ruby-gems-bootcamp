@@ -1,3 +1,9 @@
+%h3
+  Users
+  .badge.bg-success
+    = @users.count
+%p
+
 .row.row-cols-3.gx-3.gy-3 
   - @users.each do |user|
     .col

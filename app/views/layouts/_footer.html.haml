@@ -1,0 +1,21 @@
+%hr
+%footer.bg-dark.text-white
+  .container.p-4
+    .row.p-2
+      .col
+        Copyright
+        © 
+        = Time.now.year
+        CoursePlatform, LLC
+      .col
+        Privacy Policy
+      .col
+        About Us
+    .row
+      .col
+        %span.bi.bi-envelope-fill{"aria-hidden" => "true"}
+        = mail_to 'admin@example.com'
+      .col
+        Terms and Conditions
+      .col
+        = link_to 'Teach on CoursePlatform', new_course_path

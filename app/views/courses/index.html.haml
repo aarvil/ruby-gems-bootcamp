@@ -1,31 +1,40 @@
-%h1 
-  Courses: 
-  = @courses.count
+%h3
+  Courses
+  .badge.bg-success
+    = @courses.count
+%p
 
 %p
-  = link_to "New Course <i class=\"bi bi-plus\"></i>".html_safe, new_course_path, class: 'btn btn-primary'
+  = link_to "New Course <i class=\"bi bi-plus\"></i>".html_safe, new_course_path, class: 'btn btn-success'
 
 .row
   .col-md-2 
     = search_form_for @ransack_courses, as: :courses_search, url: @ransack_path do |f|
-      = f.label :title
-      = f.search_field :title_cont, placeholder: 'title', class: 'form-control form-control-sm'
-      = f.label :description
-      = f.search_field :short_description_cont, placeholder: 'short description', class: 'form-control form-control-sm'
+      .input-group-sm 
+        = f.label :title
+        = f.search_field :title_cont, placeholder: 'title', class: 'form-control form-control-sm'
+      .input-group-sm 
+        = f.label :description
+        = f.search_field :short_description_cont, placeholder: 'short description', class: 'form-control form-control-sm'
       -# = f.search_field :language_cont, placeholder: 'language', class: 'form-control form-control-sm'
-      = f.label :language
-      = f.select :language_cont, Course.languages, include_blank: true, class: 'form-select form-select-sm'
+      .input-group-sm 
+        = f.label :language
+        = f.select :language_cont, Course.languages, {include_blank: true}, {class: 'form-select form-select-sm'}
       -# = f.search_field :level_cont, placeholder: 'level', class: 'form-control form-control-sm'
-      = f.label :level
-      = f.select :level_cont, Course.levels, include_blank: true, class: 'form-select form-select-sm'
-      = f.label :price
-      = f.search_field :price_eq, placeholder: 'price', class: 'form-control form-control-sm'
-      = f.label :teacher
-      = f.search_field :user_email_cont, placeholder: 'User email', class: 'form-control form-control-sm'
-      = f.submit
-    .ml-2
-    = link_to courses_path, class: 'btn btn-sm btn-success' do 
-      .bi.bi-arrow-repeat
+      .input-group-sm 
+        = f.label :level
+        = f.select :level_cont, Course.levels, {include_blank: true}, {class: 'form-select form-select-sm'}   
+      .input-group-sm 
+        = f.label :price
+        = f.search_field :price_eq, placeholder: 'price', class: 'form-control form-control-sm'
+      .input-group-sm 
+        = f.label :teacher
+        = f.search_field :user_email_cont, placeholder: 'User email', class: 'form-control form-control-sm'
+      %p
+      %button.btn.btn-success{:type => "submit"}
+        %span.bi.bi-search{"aria-hidden" => "true"}
+      = link_to courses_path, class: 'btn btn-success' do 
+        %span.bi.bi-arrow-repeat{"aria-hidden" => "true"}
   .col-md-10
     .row.row-cols-2.row-cols-md-2.g-4
       - @courses.each do |course|
